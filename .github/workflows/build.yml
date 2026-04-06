@@ -24,6 +24,15 @@ jobs:
         
     - name: Build with Maven
       run: mvn clean package
+
+    - name: sonarcloud-scan
+      uses: sonarsource/sonarcloud-github-action@master
+      with:
+        args: >
+          -Dsonar.projectKey=aprildemo
+          -Dsonar.organization=jatinbhalla1991
+          -Dsonar.host.url=https://sonarcloud.io
+          -Dsonar.login=${{ secrets.SONAR_TOKEN }}
       
     - name: Upload JAR as artifact
       uses: actions/upload-artifact@v4
